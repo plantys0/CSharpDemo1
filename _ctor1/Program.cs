@@ -19,7 +19,7 @@
         public string ProductionStatus { private get; set; }  //SetAnyTime_DisplayViaPublicMethod
         public double FixedInterestRate { get; }  //Set@Instantiation
         private int MaxProductionCapacity { get; } //Set@Instantiation
-        private decimal _accountBalance; //Set@Instantiation and can change internally
+        private decimal _accountBalance; //Set@Instantiation and can change internally 
         public decimal AccountBalance {
             get { return _accountBalance; }
         }

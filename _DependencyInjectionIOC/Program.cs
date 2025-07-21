@@ -8,7 +8,7 @@ In C#, you can use the built-in Microsoft.Extensions.DependencyInjection to mana
                 AddSingleton: Creates a single instance for the entire application lifetime.
                 AddScoped: Creates a new instance for each request or scope.
                 AddTransient: Creates a new instance every time the service is requested.
-Application with work without DI, DI provides folloiwng benefits:
+Application with work without DI, DI provides following benefits:
                 Loose coupling: Promotes dependency on abstractions, not concrete implementations.
                 Easier testing: Facilitates using mock objects or test doubles.
                 Centralized lifetime management: Automatically manages service instances and lifetimes.

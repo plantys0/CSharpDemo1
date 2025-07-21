@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.Net.Http; // Add this at the top of the file
+using Microsoft.Extensions.Http; // Optional, but ensures AddHttpClient is available
 using System.Text.Json;
 
 class Program
