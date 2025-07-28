@@ -1,4 +1,11 @@
-- [shortcuts](#shortcuts)
+- [learning](#learning)
+    - [Accelerating Your OMSCS Preparation Before January 2026](#accelerating-your-omscs-preparation-before-january-2026)
+      - [Step 1: Quick Self-Assessment (1 Week)](#step-1-quick-self-assessment-1-week)
+      - [Step 2: Complete Foundational Prerequisites (1-2 Months, Self-Paced)](#step-2-complete-foundational-prerequisites-1-2-months-self-paced)
+      - [Step 3: Sample OMSCS Courses This Year (1-2 Months, Parallel with Prep)](#step-3-sample-omscs-courses-this-year-1-2-months-parallel-with-prep)
+      - [Step 4: Additional Tips for Efficiency and Success](#step-4-additional-tips-for-efficiency-and-success)
+- [shortcuts \& prompts](#shortcuts--prompts)
+- [system design](#system-design)
 - [lambda](#lambda)
     - [LINQ and Lambda Cheatsheet for C# (Focus on Strings and Arrays)](#linq-and-lambda-cheatsheet-for-c-focus-on-strings-and-arrays)
       - [Where (Filters based on predicate)](#where-filters-based-on-predicate)
@@ -21,12 +28,118 @@
       - [Reverse (Reverses order)](#reverse-reverses-order)
       - [Array-Specific Methods (Non-LINQ; imperative, often mutating)](#array-specific-methods-non-linq-imperative-often-mutating)
     - [Do All Statement Lambda Expressions Return a Boolean, or Is It Only for .Where?](#do-all-statement-lambda-expressions-return-a-boolean-or-is-it-only-for-where)
+- [delegate, pub-sub](#delegate-pub-sub)
 - [Compound operators e.g. +=](#compound-operators-eg-)
 
-# shortcuts
+# learning
+### Accelerating Your OMSCS Preparation Before January 2026
+- **Core Requirements**: Students must complete foundational courses in areas like graduate algorithms, software development processes, and systems/software architecture to build essential CS skills.
+- **Computing Systems**: Focuses on topics such as computer networks, database systems, high-performance computing, operating systems, and embedded systems.
+- **Interactive Intelligence**: Covers human-computer interaction, artificial intelligence, knowledge-based AI, cognitive modeling, and educational technologies.
+- **Machine Learning**: Includes machine learning theory, reinforcement learning, deep learning, data mining, and computational statistics.
+- **Computational Perception & Robotics**: Encompasses computer vision, robotics algorithms, computational photography, and geometric computing.
+- **Electives and Breadth**: Additional courses in areas like cybersecurity, data science, game development, health informatics, and social computing to provide flexibility and depth.
+- **Project/Practicum Options**: Hands-on projects or practicums in specialized areas to apply theoretical knowledge practically.
+
+Congratulations on your OMSCS application—it's an exciting step! Since the program starts in Spring 2026 (January), you have about 5 months (from late July 2025) to complete prerequisites and even sample some OMSCS-level courses. OMSCS doesn't have strict formal prerequisites beyond a bachelor's degree and demonstrated CS capability (via experience or self-study), but success requires proficiency in programming, data structures & algorithms (DS&A), object-oriented principles, and basic math (discrete math, linear algebra for ML tracks). Your resume shows strong practical experience in .NET, C#, Azure, and integrations, which will help, but targeted prep can fill gaps in foundational CS theory.
+
+To finish "prerequisites" ASAP (e.g., core skills) and "do some courses this year," focus on **self-paced, free MOOCs** that align with OMSCS topics. Many OMSCS courses have free audit versions on Udacity, allowing you to experience the content early. Aim for a 3-4 month timeline: Assess skills (1 week), core prep (1-2 months), then sample OMSCS courses (1-2 months). Track progress with weekly goals, and document completions (e.g., certificates) for your portfolio or future references.
+
+#### Step 1: Quick Self-Assessment (1 Week)
+- Review OMSCS core requirements: Programming (Python/Java/C++ preferred over just C#), DS&A, OOP, OS basics.
+- Test yourself: Use free resources like LeetCode (easy problems) or Codecademy quizzes. If your resume's C# expertise covers OOP/DS&A via projects (e.g., microservices), skip basics; otherwise, prioritize.
+- Goal: Identify 2-3 weak areas (e.g., algorithms if your work is more applied dev).
+
+#### Step 2: Complete Foundational Prerequisites (1-2 Months, Self-Paced)
+Focus on free MOOCs to build CS fundamentals. Dedicate 10-15 hours/week; most are 4-8 weeks but completable faster.
+- **Programming & OOP**: If needing Python (common in OMSCS ML courses):
+  - Georgia Tech's "Introduction to Python Programming" (edX, free to audit, ~4 weeks): Covers basics to advanced OOP. Self-paced, start now.
+  - Alternative: Google's "Python" course (Coursera, free audit, 25 hours).
+- **Data Structures & Algorithms**:
+  - Princeton's "Algorithms, Part I & II" (Coursera, free audit, 6-8 weeks each): Excellent for DS&A; highly recommended on r/OMSCS for prep.
+  - Georgia Tech's "Introduction to Graduate Algorithms" (Udacity, free, self-paced): Mirrors OMSCS's core algorithms course; ideal if your experience is light on theory.
+- **Math Foundations** (if pursuing ML/Perception):
+  - Khan Academy's "Linear Algebra" and "Discrete Math" (free, self-paced, 20-30 hours each): Quick refresh; complete in 2-3 weeks.
+  - MIT's "Mathematics for Computer Science" (edX, free audit, ~12 weeks but skippable modules).
+- **Timeline Tip**: Parallelize—e.g., do Python and Algorithms simultaneously. Aim to finish by October 2025.
+
+#### Step 3: Sample OMSCS Courses This Year (1-2 Months, Parallel with Prep)
+Georgia Tech makes many OMSCS courses available for free on Udacity (audit mode, no credit but full content/lectures). This lets you "do courses" now, building momentum and confirming fit. Focus on intro-level ones matching your interests (e.g., ML from your AI goals).
+- **Free Udacity OMSCS Audits** (self-paced, start anytime):
+  - CS 6200: Introduction to Operating Systems (~10 weeks): Covers systems topics; great if your dev background needs OS depth.
+  - CS 6250: Computer Networks (~8 weeks): Aligns with Computing Systems specialization.
+  - CS 6476: Computer Vision (~12 weeks): For Perception/Robotics track.
+  - CS 6601: Artificial Intelligence (~12 weeks): Broad AI intro; ties to your GE-AIML experience.
+  - CS 7641: Machine Learning (~16 weeks but skippable): If ML is your focus; challenging but rewarding.
+- **How to Access**: Go to Udacity.com, search for "Georgia Tech OMSCS" courses— they're free to enroll/audit. Complete lectures, quizzes (ungraded), and projects for practice.
+- **Why This Year?**: Finish 1-2 by December 2025 (e.g., start OS in September, ML in October). This previews OMSCS rigor without commitment.
+- **Alternatives if Paid/Certified**: For credentials, pay ~$99/course on Coursera/edX for similar content (e.g., Stanford's ML on Coursera).
+
+#### Step 4: Additional Tips for Efficiency and Success
+- **Pace & Tools**: Use platforms like edX/Udacity for flexibility; track via Notion or Google Sheets. Join r/OMSCS Reddit (free) for study groups—search "prep MOOCs" for community plans.
+- **Leverage Your Experience**: Your Azure/ML integrations (e.g., 95% data loss reduction) already demonstrate applicability; use prep to bridge theory gaps.
+- **Cost**: All suggested are free to audit; optional certificates ($50-100) if desired.
+- **Verification**: Save completion badges/screenshots; mention in future OMSCS updates if relevant.
+- **Potential Challenges**: If time-constrained (e.g., work), prioritize 1-2 topics/week. If math-heavy, supplement with YouTube (3Blue1Brown for linear algebra).
+
+This plan lets you enter OMSCS prepared and confident. If you share your weak areas (e.g., algorithms), I can refine further!
+
+# shortcuts & prompts
 VStudio: Ctrl+D = copy selected text below
+
+Answer with a single block of latest .net version C# code. The code should have its own input End the code with a Console.WriteLine("End"); statement. No other ConsoleWriteLine statement is needed because I will test in debug mode with breakpoints. Have minimal comments. Comments should only be at the end of the respective code line.  
+
+# system design
+ must-know runtime complexities for coding interviews:
+
+1. 𝐎(1) - 𝐂𝐨𝐧𝐬𝐭𝐚𝐧𝐭 𝐭𝐢𝐦𝐞
+- The runtime doesn't change regardless of the input size.
+- Example: Accessing an element in an array by its index.
+
+2. 𝐎(𝐥𝐨𝐠 𝐧) - 𝐋𝐨𝐠𝐚𝐫𝐢𝐭𝐡𝐦𝐢𝐜 𝐭𝐢𝐦𝐞
+- The runtime grows slowly as the input size increases. Typically seen in algorithms that divide the problem in half with each step.
+- Example: Binary search in a sorted array.
+
+3. 𝐎(𝐧) - 𝐋𝐢𝐧𝐞𝐚𝐫 𝐭𝐢𝐦𝐞
+- The runtime grows linearly with the input size.
+- Example: Finding an element in an array by iterating through each element.
+
+4. 𝐎(𝐧 𝐥𝐨𝐠 𝐧) - 𝐋𝐢𝐧𝐞𝐚𝐫𝐢𝐭𝐡𝐦𝐢𝐜 𝐭𝐢𝐦𝐞
+- The runtime grows slightly faster than linear time. It involves a logarithmic number of operations for each element in the input.
+- Example: Sorting an array using quick sort or merge sort.
+
+5. 𝐎(𝐧^2) - 𝐐𝐮𝐚𝐝𝐫𝐚𝐭𝐢𝐜 𝐭𝐢𝐦𝐞
+- The runtime grows proportionally to the square of the input size.
+- Example: Bubble sort algorithm which compares and potentially swaps every pair of elements.
+
+6. 𝐎(2^𝐧) - 𝐄𝐱𝐩𝐨𝐧𝐞𝐧𝐭𝐢𝐚𝐥 𝐭𝐢𝐦𝐞
+- The runtime doubles with each addition to the input. These algorithms become impractical for larger input sizes.
+- Example: Generating all subsets of a set.
+
+7. 𝐎(𝐧!) - 𝐅𝐚𝐜𝐭𝐨𝐫𝐢𝐚𝐥 𝐭𝐢𝐦𝐞
+- Runtime is proportional to the factorial of the input size.
+- Example: Generating all permutations of a set.
+  
+![alt text](image.png)
+
+
 # lambda
 ### LINQ and Lambda Cheatsheet for C# (Focus on Strings and Arrays)
+
+ - LINQ methods like Where and Select naturally return IEnumerable<T> (lazy execution). If we add .ToList(), it would have immediate execution.
+ - Use IOrderedEnumerable<T> for chaining additional sorting levels. Always use this when applyting OrderBy
+ - Use IQueryable<T> when querying as DB table
+ - Return IDictionary in methods for loose coupling (e.g., IDictionary<string, int> GetScores()—can return a Dictionary inside).
+ - Use concrete types like Dictionary<TKey, TValue> when you need fast lookups and don't care about the interface.
+    - Dictionary<TKey, TValue>: Default for fast, unordered key-value (implements IDictionary).
+    - SortedDictionary<TKey, TValue>: For auto-sorted keys.
+    - ReadOnlyDictionary<TKey, TValue>: If data shouldn't change.
+    - ConcurrentDictionary<TKey, TValue>: For thread-safe (multi-thread) access.
+ - ILookup: When you have groupings with one key to many values
+ - IGrouping<TKey, TElement>: Single group from GroupBy (part of ILookup internals). Use for one group at a time.
+ - IReadOnlyDictionary<TKey, TValue>: For read-only key-value without modifications.
+ - KeyValuePair<TKey, TValue>: For single pairs, not collections.
+
 
 This cheatsheet covers key LINQ methods using lambda expressions, with a focus on querying strings (as `IEnumerable<char>`) and arrays (e.g., `string[]`, `int[]`). All examples assume `using System.Linq;`. Lambdas are categorized as **Expression Lambdas** (single-line, implicit return) or **Statement Lambdas** (block body with explicit return, for complexity). I've distributed 20 of each across sections, ensuring medium-high complexity, no duplication, and common use cases like filtering with conditions, projections with calculations, handling nulls (C# 8+), regex, and nested queries. Total: 40 lambdas.
 
@@ -209,6 +322,18 @@ No, statement lambda expressions do not always return a boolean—they can retur
   - Events: `sender => { Log("Clicked"); }` (void for event handlers).
 
 In summary, the return type is context-driven, not fixed to boolean—only .Where (and similar predicates) enforce `bool`. Use statement lambdas for complex logic regardless of type.
+# delegate, pub-sub
+**Delegate:** A delegate is like a contract that defines a method’s signature (parameters and return type). It acts as a pointer to methods that match this signature, allowing them to be called indirectly.
+
+A method signature is `public int Calculator(int x, int y);`
+A delegate would be  `public delegate int Calculator(int x, int y);`
+
+
+**Event:** In C#, an event is a special kind of delegate that supports the publisher-subscriber pattern. It allows multiple methods to be "subscribed" to it, and when the event is "raised" by the publisher, all subscribed methods are called.
+
+**Subscription (+=):** This adds a method to the event’s list of handlers. It’s like signing up for a newsletter—your method gets added to the list of recipients.
+
+**Invocation:** When the publisher raises the event (using Invoke), all subscribed methods are called with the specified arguments.
 
 # Compound operators e.g. +=
 | Operator | Description | Example (equivalent long form) |
