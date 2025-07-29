@@ -1,18 +1,24 @@
 ﻿
 namespace AAA
 {
-    public class a_case
+    public class a_caseIfelseExtensionOther
     {
         public static void Main(string[] args)
         {
-            #region other 
+
+            #region others            
             /*
             (nums[l], nums[r]) = (nums[r], nums[l]);  //tuple deconstruction
             */
             #endregion
 
 
-
+            #region ExtensionMethods
+           string text = "Hello, this is a sample text!";
+            int count = StringExtensions.WordCount(text); // Call the extension method
+            Console.WriteLine($"The text has {count} words.");
+            Console.WriteLine("End");
+            #endregion
 
             #region IfElse
             int number = 10; string name = "Alice"; string maybeNull = null;
@@ -126,8 +132,8 @@ else
 
             // Switch on Tuple  
             Console.WriteLine("\n6. Switch on Tuple:");
-            (int num, string text) = (choice, fruit);
-            switch ((num, text))
+            (int num, string text9) = (choice, fruit);
+            switch ((num, text9))
             {
                 case (1, "Apple"):
                     Console.WriteLine("One Apple.");
