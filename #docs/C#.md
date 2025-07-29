@@ -4,7 +4,7 @@
       - [Step 2: Complete Foundational Prerequisites (1-2 Months, Self-Paced)](#step-2-complete-foundational-prerequisites-1-2-months-self-paced)
       - [Step 3: Sample OMSCS Courses This Year (1-2 Months, Parallel with Prep)](#step-3-sample-omscs-courses-this-year-1-2-months-parallel-with-prep)
       - [Step 4: Additional Tips for Efficiency and Success](#step-4-additional-tips-for-efficiency-and-success)
-- [shortcuts \& prompts](#shortcuts--prompts)
+- [shortcuts \& prompts: VStudio](#shortcuts--prompts-vstudio)
 - [system design](#system-design)
 - [lambda](#lambda)
     - [LINQ and Lambda Cheatsheet for C# (Focus on Strings and Arrays)](#linq-and-lambda-cheatsheet-for-c-focus-on-strings-and-arrays)
@@ -84,8 +84,10 @@ Georgia Tech makes many OMSCS courses available for free on Udacity (audit mode,
 
 This plan lets you enter OMSCS prepared and confident. If you share your weak areas (e.g., algorithms), I can refine further!
 
-# shortcuts & prompts
-VStudio: Ctrl+D = copy selected text below
+# shortcuts & prompts: VStudio
+Ctrl+D = copy selected text below
+
+Ctrl+L = delete current line
 
 Answer with a single block of latest .net version C# code. The code should have its own input End the code with a Console.WriteLine("End"); statement. No other ConsoleWriteLine statement is needed because I will test in debug mode with breakpoints. Have minimal comments. Comments should only be at the end of the respective code line.  
 
