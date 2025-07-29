@@ -253,14 +253,14 @@ public class Square : Rectangle
     }
 }
 
-// Example usage that breaks:
+/* Example usage that breaks:
 public static void PrintArea(Rectangle rect)
 {
     rect.SetWidth(5);
     rect.SetHeight(10);
     Console.WriteLine(rect.GetArea()); // Expected 50
 }
-
+*/
 // Works for Rectangle, but for Square: sets to 10x10, area 100 instead of 50.
 
 // SOLID Example: Separate interfaces/implementations without inheritance that violates behavior.

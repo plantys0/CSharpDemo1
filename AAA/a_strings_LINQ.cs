@@ -1,11 +1,11 @@
-﻿using System.Text;
-using System;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
-using System.Runtime.ExceptionServices;
-
-#region  stringLINQ
+﻿
+namespace AAA
+{
+    public class a_strings_LINQ
+    {
+        public static void Main(string[] args)
+        {
+  #region  stringLINQ
 
 var words9 = new List<string>
         {
@@ -57,8 +57,6 @@ var combinedQuery = sentence.Split(' ', StringSplitOptions.RemoveEmptyEntries)
 
 
 #endregion
-
-
 
 #region stringComplex
 string text = "Hello World 123!";
@@ -421,3 +419,8 @@ Console.WriteLine(sb3); // displays 0123456789
 sb3[0] = sb3[9];
 Console.WriteLine(sb3); // displays 9123456789
 #endregion
+
+
+        }
+    }
+}
