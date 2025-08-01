@@ -6,7 +6,6 @@
       - [Step 4: Additional Tips for Efficiency and Success](#step-4-additional-tips-for-efficiency-and-success)
 - [shortcuts \& prompts: VStudio](#shortcuts--prompts-vstudio)
 - [system design](#system-design)
-- [.net](#net)
 - [lambda](#lambda)
     - [LINQ and Lambda Cheatsheet for C# (Focus on Strings and Arrays)](#linq-and-lambda-cheatsheet-for-c-focus-on-strings-and-arrays)
       - [Where (Filters based on predicate)](#where-filters-based-on-predicate)
@@ -86,6 +85,9 @@ Georgia Tech makes many OMSCS courses available for free on Udacity (audit mode,
 This plan lets you enter OMSCS prepared and confident. If you share your weak areas (e.g., algorithms), I can refine further!
 
 # shortcuts & prompts: VStudio
+use xUnit for unit testing
+Ctrl+K+H = add the line to tasklist (toggle)
+
 Ctrl+D = copy selected text below
 
 Ctrl+L = delete current line

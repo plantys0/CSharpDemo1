@@ -30,7 +30,7 @@ class Program
         Console.WriteLine($"1. Factorial of 5: {factorial(5)}");
 
         // 2. Higher-order function that returns a function 
-        //todo
+        //TODO understand this
         Func<int, Func<int, int>> multiplier = x => y => x * y;
         var triple = multiplier(3);
         Console.WriteLine($"2. Triple of 7: {triple(7)}");

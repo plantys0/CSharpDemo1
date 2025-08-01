@@ -6,3 +6,4 @@ global using System.Collections.Generic;
 global using System.Text.RegularExpressions;
 global using System.ComponentModel.DataAnnotations;
 global using System.Diagnostics;
+global using System.Diagnostics.CodeAnalysis; //TODO: whats this
