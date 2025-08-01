@@ -6,6 +6,7 @@
       - [Step 4: Additional Tips for Efficiency and Success](#step-4-additional-tips-for-efficiency-and-success)
 - [shortcuts \& prompts: VStudio](#shortcuts--prompts-vstudio)
 - [system design](#system-design)
+- [.net](#net)
 - [lambda](#lambda)
     - [LINQ and Lambda Cheatsheet for C# (Focus on Strings and Arrays)](#linq-and-lambda-cheatsheet-for-c-focus-on-strings-and-arrays)
       - [Where (Filters based on predicate)](#where-filters-based-on-predicate)

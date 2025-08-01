@@ -302,20 +302,13 @@ public class SquareSolid : IShape
 }
 
 // Usage:
-public static void PrintArea(IShape shape)
+public interface IPaymentGateway
 {
-    Console.WriteLine(shape.GetArea());
+    void Pay();
+    void Refund();
+    void Schedule();
 }
 
-// Interface Segregation Principle (ISP)
-// Explanation: Clients should not be forced to depend on interfaces they do not use. Break large interfaces into smaller, focused ones.
-// Non-SOLID Example: Classes forced to implement unused methods, throwing exceptions.
-public interface IRemoteControl
-{
-    void TurnOn();
-    void TurnOff();
-    void Record();
-}
 
 // Example classes throwing for unused:
 public class CashOnDelivery : IPaymentGateway  // Assuming IPaymentGateway is the fat interface
@@ -501,6 +494,21 @@ public class BookTicketControllerSolid
 // Usage example:
 public class Program
 {
+
+    static void PrintArea(IShape shape)
+{
+    Console.WriteLine(shape.GetArea());
+}
+
+// Interface Segregation Principle (ISP)
+// Explanation: Clients should not be forced to depend on interfaces they do not use. Break large interfaces into smaller, focused ones.
+// Non-SOLID Example: Classes forced to implement unused methods, throwing exceptions.
+public interface IRemoteControl
+{
+    void TurnOn();
+    void TurnOff();
+    void Record();
+}
     public static void Main()
     {
         ITicketRepository repo = new TicketRepositorySolid();
