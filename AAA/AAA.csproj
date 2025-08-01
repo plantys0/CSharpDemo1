@@ -5,7 +5,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <StartupObject>AAA.a_strings_LINQ</StartupObject>
+    <StartupObject>AAA.a02_SOLID</StartupObject>
   </PropertyGroup>
 
 </Project>

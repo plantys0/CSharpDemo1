@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace AAA
 {
@@ -32,24 +28,28 @@ namespace AAA
             public bool CheckSeatAvailability()
             {
                 // Logic to check seat in DB
+                Console.WriteLine($"Checking availability for seat {seatNumber} in movie {movieId}");
                 return true;
             }
 
             public int CalculatePrice()
             {
                 // Price logic based on seat type, timing
+                Console.WriteLine($"Calculating price for seat {seatNumber}");
                 return 300;
             }
 
             public bool MakePayment()
             {
                 // Call payment gateway API
+                Console.WriteLine($"Making payment of 300 for user {userId}");
                 return true;
             }
 
             public void SendConfirmation()
             {
                 // Send SMS or Email
+                Console.WriteLine($"Sending confirmation to user {userId} for movie {movieId}");
             }
 
             public void Book()
@@ -68,11 +68,13 @@ namespace AAA
         }
 
         // SOLID Example: Separate classes for each responsibility, injected into TicketBooking.
+        // To extend: Add new classes for different checkers, calculators, etc., without changing TicketBookingSolid.
         public class SeatChecker
         {
             public bool IsSeatAvailable(int movieId, string seatNumber)
             {
                 // Check in DB if seat is free
+                Console.WriteLine($"Checking availability for seat {seatNumber} in movie {movieId}");
                 return true;
             }
         }
@@ -82,26 +84,58 @@ namespace AAA
             public int GetPrice(int movieId, string seatNumber)
             {
                 // Logic based on seat type, timing, etc.
+                Console.WriteLine($"Calculating price for seat {seatNumber}");
                 return 300;
             }
         }
 
-        public class PaymentService
+        // Interface for payment services to allow swapping implementations
+        public interface IPaymentService
+        {
+            bool Pay(int userId, int amount);
+        }
+
+        // Initial payment service: Credit Card
+        public class CreditCardPaymentService : IPaymentService
         {
             public bool Pay(int userId, int amount)
             {
-                // Payment gateway integration
-                Console.WriteLine($"Processing payment of ₹{amount} for user {userId}");
+                Console.WriteLine($"Processing credit card payment of {amount} for user {userId}");
                 return true;
             }
         }
 
-        public class Notifier
+        // Added later: Debit Card payment service
+        public class DebitCardPaymentService : IPaymentService
+        {
+            public bool Pay(int userId, int amount)
+            {
+                Console.WriteLine($"Processing debit card payment of {amount} for user {userId}");
+                return true;
+            }
+        }
+
+        // Interface for notification services to allow swapping implementations
+        public interface INotifier
+        {
+            void SendConfirmation(int userId, int movieId);
+        }
+
+        // Initial notification service: Email
+        public class EmailNotificationService : INotifier
         {
             public void SendConfirmation(int userId, int movieId)
             {
-                // Send email/SMS
-                Console.WriteLine($"Confirmation sent to user {userId} for movie {movieId}");
+                Console.WriteLine($"Sending email confirmation to user {userId} for movie {movieId}");
+            }
+        }
+
+        // Added later: SMS notification service
+        public class SMSNotificationService : INotifier
+        {
+            public void SendConfirmation(int userId, int movieId)
+            {
+                Console.WriteLine($"Sending SMS confirmation to user {userId} for movie {movieId}");
             }
         }
 
@@ -109,10 +143,10 @@ namespace AAA
         {
             private SeatChecker seatChecker;
             private PriceCalculator priceCalculator;
-            private PaymentService paymentService;
-            private Notifier notifier;
+            private IPaymentService paymentService; // Uses interface for easy swapping
+            private INotifier notifier; // Uses interface for easy swapping
 
-            public TicketBookingSolid(SeatChecker seatChecker, PriceCalculator priceCalculator, PaymentService paymentService, Notifier notifier)
+            public TicketBookingSolid(SeatChecker seatChecker, PriceCalculator priceCalculator, IPaymentService paymentService, INotifier notifier)
             {
                 this.seatChecker = seatChecker;
                 this.priceCalculator = priceCalculator;
@@ -150,26 +184,34 @@ namespace AAA
         {
             public void Process(string paymentMethod)
             {
-                if (paymentMethod == "credit_card")
+                try
                 {
-                    Console.WriteLine("Processing credit card payment...");
+                    if (paymentMethod == "credit_card")
+                    {
+                        Console.WriteLine("Processing credit card payment...");
+                    }
+                    else if (paymentMethod == "paypal")
+                    {
+                        Console.WriteLine("Processing PayPal payment...");
+                    }
+                    else if (paymentMethod == "upi")
+                    {
+                        Console.WriteLine("Processing UPI payment...");
+                    }
+                    else
+                    {
+                        throw new Exception("Unsupported payment method");
+                    }
                 }
-                else if (paymentMethod == "paypal")
+                catch (Exception ex)
                 {
-                    Console.WriteLine("Processing PayPal payment...");
-                }
-                else if (paymentMethod == "upi")
-                {
-                    Console.WriteLine("Processing UPI payment...");
-                }
-                else
-                {
-                    throw new Exception("Unsupported payment method");
+                    Console.WriteLine($"Error: {ex.Message}");
                 }
             }
         }
 
         // SOLID Example: Use strategy pattern with interface; new methods added by new classes implementing the interface, no change to processor.
+        // To extend: Create a new class implementing IPaymentStrategy, e.g., BitcoinPayment, and pass it to PaymentProcessorSolid.
         public interface IPaymentStrategy
         {
             void Pay();
@@ -179,7 +221,7 @@ namespace AAA
         {
             public void Pay()
             {
-                Console.WriteLine("Credit card payment processed");
+                Console.WriteLine("Processing credit card payment...");
             }
         }
 
@@ -187,7 +229,7 @@ namespace AAA
         {
             public void Pay()
             {
-                Console.WriteLine("PayPal payment processed");
+                Console.WriteLine("Processing PayPal payment...");
             }
         }
 
@@ -195,7 +237,7 @@ namespace AAA
         {
             public void Pay()
             {
-                Console.WriteLine("UPI payment processed");
+                Console.WriteLine("Processing UPI payment...");
             }
         }
 
@@ -210,7 +252,14 @@ namespace AAA
 
             public void Process()
             {
-                strategy.Pay();
+                try
+                {
+                    strategy.Pay();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error: {ex.Message}");
+                }
             }
         }
 
@@ -261,17 +310,16 @@ namespace AAA
             }
         }
 
-        /* Example usage that breaks:
+        // Example usage that breaks (demo in Main):
         public static void PrintArea(Rectangle rect)
         {
             rect.SetWidth(5);
             rect.SetHeight(10);
-            Console.WriteLine(rect.GetArea()); // Expected 50
+            Console.WriteLine($"Area: {rect.GetArea()}"); // Expected 50 for Rectangle, but 100 for Square
         }
-        */
-        // Works for Rectangle, but for Square: sets to 10x10, area 100 instead of 50.
 
         // SOLID Example: Separate interfaces/implementations without inheritance that violates behavior.
+        // To extend: Add new shapes implementing IShape, without affecting existing ones.
         public interface IShape
         {
             int GetArea();
@@ -310,6 +358,14 @@ namespace AAA
         }
 
         // Usage:
+        public static void PrintAreaSolid(IShape shape)
+        {
+            Console.WriteLine($"Area: {shape.GetArea()}");
+        }
+
+        // Interface Segregation Principle (ISP)
+        // Explanation: Clients should not be forced to depend on interfaces they do not use. Break large interfaces into smaller, focused ones.
+        // Non-SOLID Example: Classes forced to implement unused methods, throwing exceptions.
         public interface IPaymentGateway
         {
             void Pay();
@@ -317,13 +373,12 @@ namespace AAA
             void Schedule();
         }
 
-
-        // Example classes throwing for unused:
-        public class CashOnDelivery : IPaymentGateway  // Assuming IPaymentGateway is the fat interface
+        // Example class throwing for unused:
+        public class CashOnDelivery : IPaymentGateway
         {
             public void Pay()
             {
-                Console.WriteLine("COD payment");
+                Console.WriteLine("COD payment processed");
             }
 
             public void Refund()
@@ -333,15 +388,12 @@ namespace AAA
 
             public void Schedule()
             {
-                throw new Exception("Scheduling not supported");
+                throw new Exception("Scheduling not supported for COD");
             }
         }
 
-        // Similar for UserActivityReport and LogFileReader.
-
-        // Note: The article uses different examples; here condensed to one, but principle is the same.
-
         // SOLID Example: Split interfaces into specific ones.
+        // To extend: Classes implement only needed interfaces, add new interfaces if new behaviors needed.
         public interface IPayable
         {
             void Pay();
@@ -361,56 +413,26 @@ namespace AAA
         {
             public void Pay()
             {
-                Console.WriteLine("COD payment");
+                Console.WriteLine("COD payment processed");
             }
         }
 
         public class StripePayment : IPayable, IRefundable, ISchedulable
         {
-            public void Pay() { /* impl */ }
-            public void Refund() { /* impl */ }
-            public void Schedule() { /* impl */ }
-        }
-
-        // Similar for report generators:
-        public interface IPDFGeneratable
-        {
-            void GeneratePDF();
-        }
-
-        public interface IExcelGeneratable
-        {
-            void GenerateExcel();
-        }
-
-        public interface ICSVGeneratable
-        {
-            void GenerateCSV();
-        }
-
-        public class UserActivityReportSolid : ICSVGeneratable
-        {
-            public void GenerateCSV()
+            public void Pay()
             {
-                Console.WriteLine("Generating user CSV");
+                Console.WriteLine("Stripe payment processed");
             }
-        }
 
-        // And for files:
-        public interface IFileOpener
-        {
-            void Open();
-            void Close();
-        }
+            public void Refund()
+            {
+                Console.WriteLine("Stripe refund processed");
+            }
 
-        public interface IFileReader : IFileOpener
-        {
-            string Read();
-        }
-
-        public interface IFileWriter : IFileOpener
-        {
-            void Write(string data);
+            public void Schedule()
+            {
+                Console.WriteLine("Stripe schedule processed");
+            }
         }
 
         // Dependency Inversion Principle (DIP)
@@ -446,11 +468,13 @@ namespace AAA
                 string userId = "u1";
                 string movieId = "m101";
                 string bookingId = service.Execute(userId, movieId);
+                Console.WriteLine($"Booking ID: {bookingId}");
                 return new { Success = true, BookingId = bookingId };
             }
         }
 
         // SOLID Example: Depend on interfaces, inject dependencies.
+        // To extend: Implement new repositories, services, etc., and inject them without changing high-level classes.
         public interface ITicketRepository
         {
             string BookTicket(string userId, string movieId);
@@ -495,30 +519,93 @@ namespace AAA
                 string userId = "u1";
                 string movieId = "m101";
                 string bookingId = service.Execute(userId, movieId);
+                Console.WriteLine($"Booking ID: {bookingId}");
                 return new { Success = true, BookingId = bookingId };
             }
         }
-        static void PrintArea(IShape shape)
-        {
-            Console.WriteLine(shape.GetArea());
-        }
 
-        // Interface Segregation Principle (ISP)
-        // Explanation: Clients should not be forced to depend on interfaces they do not use. Break large interfaces into smaller, focused ones.
-        // Non-SOLID Example: Classes forced to implement unused methods, throwing exceptions.
-        public interface IRemoteControl
+        static void Main(string[] args)
         {
-            void TurnOn();
-            void TurnOff();
-            void Record();
-        }
-        public static void Main()
-        {
+            // SRP Demo
+            Console.WriteLine("--- SRP Non-SOLID ---");
+            TicketBooking booking = new TicketBooking(101, 1, "A1");
+            booking.Book();
+
+            Console.WriteLine("--- SRP SOLID ---");
+            SeatChecker seatChecker = new SeatChecker();
+            PriceCalculator priceCalculator = new PriceCalculator();
+            // Use initial services: CreditCard and Email
+            IPaymentService paymentService = new CreditCardPaymentService();
+            INotifier notifier = new EmailNotificationService();
+            // To swap: Change to DebitCardPaymentService and SMSNotificationService
+            // e.g., IPaymentService paymentService = new DebitCardPaymentService();
+            // INotifier notifier = new SMSNotificationService();
+            TicketBookingSolid bookingSolid = new TicketBookingSolid(seatChecker, priceCalculator, paymentService, notifier);
+            bookingSolid.BookTicket(1, 101, "A1");
+
+            // OCP Demo
+            Console.WriteLine("--- OCP Non-SOLID ---");
+            PaymentProcessor processor = new PaymentProcessor();
+            processor.Process("credit_card");
+            processor.Process("paypal");
+            processor.Process("upi");
+            processor.Process("bitcoin"); // Will throw error
+
+            Console.WriteLine("--- OCP SOLID ---");
+            PaymentProcessorSolid processorCC = new PaymentProcessorSolid(new CreditCardPayment());
+            processorCC.Process();
+            PaymentProcessorSolid processorPP = new PaymentProcessorSolid(new PayPalPayment());
+            processorPP.Process();
+            PaymentProcessorSolid processorUPI = new PaymentProcessorSolid(new UPIPayment());
+            processorUPI.Process();
+            // For new method, e.g., Bitcoin, just create new strategy class and use: new PaymentProcessorSolid(new BitcoinPayment()).Process();
+
+            // LSP Demo
+            Console.WriteLine("--- LSP Non-SOLID ---");
+            Rectangle rect = new Rectangle(0, 0);
+            PrintArea(rect); // Area: 50
+            Square sq = new Square(0);
+            PrintArea(sq); // Area: 100 (unexpected)
+
+            Console.WriteLine("--- LSP SOLID ---");
+            IShape rectSolid = new RectangleSolid(5, 10);
+            PrintAreaSolid(rectSolid); // Area: 50
+            IShape sqSolid = new SquareSolid(5);
+            PrintAreaSolid(sqSolid); // Area: 25 (but note: we can't set width/height independently on square)
+
+            // ISP Demo
+            Console.WriteLine("--- ISP Non-SOLID ---");
+            try
+            {
+                IPaymentGateway cod = new CashOnDelivery();
+                cod.Pay();
+                cod.Refund(); // Throws
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            Console.WriteLine("--- ISP SOLID ---");
+            IPayable codSolid = new CashOnDeliverySolid();
+            codSolid.Pay(); // No throw
+            // Can't call Refund() on IPayable, so no force to implement unused
+
+            StripePayment stripe = new StripePayment();
+            stripe.Pay();
+            stripe.Refund();
+            stripe.Schedule();
+
+            // DIP Demo
+            Console.WriteLine("--- DIP Non-SOLID ---");
+            BookTicketController controller = new BookTicketController();
+            controller.HandleRequest(null);
+
+            Console.WriteLine("--- DIP SOLID ---");
             ITicketRepository repo = new TicketRepositorySolid();
             BookTicketServiceSolid service = new BookTicketServiceSolid(repo);
-            BookTicketControllerSolid controller = new BookTicketControllerSolid(service);
-            object response = controller.HandleRequest(null); // fake req
-            Console.WriteLine(response); // Would print object, but in practice.
+            BookTicketControllerSolid controllerSolid = new BookTicketControllerSolid(service);
+            controllerSolid.HandleRequest(null);
         }
     }
 }
