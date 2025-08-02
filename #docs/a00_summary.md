@@ -1,9 +1,3 @@
-- [learning](#learning)
-    - [Accelerating Your OMSCS Preparation Before January 2026](#accelerating-your-omscs-preparation-before-january-2026)
-      - [Step 1: Quick Self-Assessment (1 Week)](#step-1-quick-self-assessment-1-week)
-      - [Step 2: Complete Foundational Prerequisites (1-2 Months, Self-Paced)](#step-2-complete-foundational-prerequisites-1-2-months-self-paced)
-      - [Step 3: Sample OMSCS Courses This Year (1-2 Months, Parallel with Prep)](#step-3-sample-omscs-courses-this-year-1-2-months-parallel-with-prep)
-      - [Step 4: Additional Tips for Efficiency and Success](#step-4-additional-tips-for-efficiency-and-success)
 - [shortcuts \& prompts: VStudio](#shortcuts--prompts-vstudio)
 - [system design](#system-design)
 - [lambda](#lambda)
@@ -31,61 +25,11 @@
 - [delegate, pub-sub](#delegate-pub-sub)
 - [Compound operators e.g. +=](#compound-operators-eg-)
 
-# learning
-### Accelerating Your OMSCS Preparation Before January 2026
-- **Core Requirements**: Students must complete foundational courses in areas like graduate algorithms, software development processes, and systems/software architecture to build essential CS skills.
-- **Computing Systems**: Focuses on topics such as computer networks, database systems, high-performance computing, operating systems, and embedded systems.
-- **Interactive Intelligence**: Covers human-computer interaction, artificial intelligence, knowledge-based AI, cognitive modeling, and educational technologies.
-- **Machine Learning**: Includes machine learning theory, reinforcement learning, deep learning, data mining, and computational statistics.
-- **Computational Perception & Robotics**: Encompasses computer vision, robotics algorithms, computational photography, and geometric computing.
-- **Electives and Breadth**: Additional courses in areas like cybersecurity, data science, game development, health informatics, and social computing to provide flexibility and depth.
-- **Project/Practicum Options**: Hands-on projects or practicums in specialized areas to apply theoretical knowledge practically.
-
-Congratulations on your OMSCS application—it's an exciting step! Since the program starts in Spring 2026 (January), you have about 5 months (from late July 2025) to complete prerequisites and even sample some OMSCS-level courses. OMSCS doesn't have strict formal prerequisites beyond a bachelor's degree and demonstrated CS capability (via experience or self-study), but success requires proficiency in programming, data structures & algorithms (DS&A), object-oriented principles, and basic math (discrete math, linear algebra for ML tracks). Your resume shows strong practical experience in .NET, C#, Azure, and integrations, which will help, but targeted prep can fill gaps in foundational CS theory.
-
-To finish "prerequisites" ASAP (e.g., core skills) and "do some courses this year," focus on **self-paced, free MOOCs** that align with OMSCS topics. Many OMSCS courses have free audit versions on Udacity, allowing you to experience the content early. Aim for a 3-4 month timeline: Assess skills (1 week), core prep (1-2 months), then sample OMSCS courses (1-2 months). Track progress with weekly goals, and document completions (e.g., certificates) for your portfolio or future references.
-
-#### Step 1: Quick Self-Assessment (1 Week)
-- Review OMSCS core requirements: Programming (Python/Java/C++ preferred over just C#), DS&A, OOP, OS basics.
-- Test yourself: Use free resources like LeetCode (easy problems) or Codecademy quizzes. If your resume's C# expertise covers OOP/DS&A via projects (e.g., microservices), skip basics; otherwise, prioritize.
-- Goal: Identify 2-3 weak areas (e.g., algorithms if your work is more applied dev).
-
-#### Step 2: Complete Foundational Prerequisites (1-2 Months, Self-Paced)
-Focus on free MOOCs to build CS fundamentals. Dedicate 10-15 hours/week; most are 4-8 weeks but completable faster.
-- **Programming & OOP**: If needing Python (common in OMSCS ML courses):
-  - Georgia Tech's "Introduction to Python Programming" (edX, free to audit, ~4 weeks): Covers basics to advanced OOP. Self-paced, start now.
-  - Alternative: Google's "Python" course (Coursera, free audit, 25 hours).
-- **Data Structures & Algorithms**:
-  - Princeton's "Algorithms, Part I & II" (Coursera, free audit, 6-8 weeks each): Excellent for DS&A; highly recommended on r/OMSCS for prep.
-  - Georgia Tech's "Introduction to Graduate Algorithms" (Udacity, free, self-paced): Mirrors OMSCS's core algorithms course; ideal if your experience is light on theory.
-- **Math Foundations** (if pursuing ML/Perception):
-  - Khan Academy's "Linear Algebra" and "Discrete Math" (free, self-paced, 20-30 hours each): Quick refresh; complete in 2-3 weeks.
-  - MIT's "Mathematics for Computer Science" (edX, free audit, ~12 weeks but skippable modules).
-- **Timeline Tip**: Parallelize—e.g., do Python and Algorithms simultaneously. Aim to finish by October 2025.
-
-#### Step 3: Sample OMSCS Courses This Year (1-2 Months, Parallel with Prep)
-Georgia Tech makes many OMSCS courses available for free on Udacity (audit mode, no credit but full content/lectures). This lets you "do courses" now, building momentum and confirming fit. Focus on intro-level ones matching your interests (e.g., ML from your AI goals).
-- **Free Udacity OMSCS Audits** (self-paced, start anytime):
-  - CS 6200: Introduction to Operating Systems (~10 weeks): Covers systems topics; great if your dev background needs OS depth.
-  - CS 6250: Computer Networks (~8 weeks): Aligns with Computing Systems specialization.
-  - CS 6476: Computer Vision (~12 weeks): For Perception/Robotics track.
-  - CS 6601: Artificial Intelligence (~12 weeks): Broad AI intro; ties to your GE-AIML experience.
-  - CS 7641: Machine Learning (~16 weeks but skippable): If ML is your focus; challenging but rewarding.
-- **How to Access**: Go to Udacity.com, search for "Georgia Tech OMSCS" courses— they're free to enroll/audit. Complete lectures, quizzes (ungraded), and projects for practice.
-- **Why This Year?**: Finish 1-2 by December 2025 (e.g., start OS in September, ML in October). This previews OMSCS rigor without commitment.
-- **Alternatives if Paid/Certified**: For credentials, pay ~$99/course on Coursera/edX for similar content (e.g., Stanford's ML on Coursera).
-
-#### Step 4: Additional Tips for Efficiency and Success
-- **Pace & Tools**: Use platforms like edX/Udacity for flexibility; track via Notion or Google Sheets. Join r/OMSCS Reddit (free) for study groups—search "prep MOOCs" for community plans.
-- **Leverage Your Experience**: Your Azure/ML integrations (e.g., 95% data loss reduction) already demonstrate applicability; use prep to bridge theory gaps.
-- **Cost**: All suggested are free to audit; optional certificates ($50-100) if desired.
-- **Verification**: Save completion badges/screenshots; mention in future OMSCS updates if relevant.
-- **Potential Challenges**: If time-constrained (e.g., work), prioritize 1-2 topics/week. If math-heavy, supplement with YouTube (3Blue1Brown for linear algebra).
-
-This plan lets you enter OMSCS prepared and confident. If you share your weak areas (e.g., algorithms), I can refine further!
-
 # shortcuts & prompts: VStudio
 use xUnit for unit testing
+
+??: Null-coalescing operator – checks if left side is null, then uses right side.
+
 Ctrl+K+H = add the line to tasklist (toggle)
 
 Ctrl+D = copy selected text below
