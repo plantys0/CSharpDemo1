@@ -1,0 +1,25 @@
+body {
+    font-size: 12px;  /* Adjust to your preferred smaller size, e.g., 10px or 0.8em */
+    line-height: 1.0; /* Reduces spacing between lines for compactness; default is often 1.5+ */
+    margin: 10px;     /* Smaller margins around the content */
+    padding: 0;       /* Remove extra padding */
+}
+
+p {
+    margin-bottom: 0.5em; /* Tighten paragraph spacing */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1.2em; /* Smaller headers; adjust as needed (e.g., h1 to 1.5em, h2 to 1.2em) */
+    margin-top: 0.5em;
+    margin-bottom: 0.3em;
+}
+
+code, pre {
+    font-size: 0.9em; /* Smaller code fonts */
+}
+
+ul, ol {
+    margin-left: 1em; /* Compact lists */
+    padding-left: 0.5em;
+}
