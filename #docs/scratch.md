@@ -1,4 +1,17 @@
-
+#
+Airtel customers in India can get the 1-year Perplexity Pro offer for free directly through the Airtel Thanks app. Here’s how you can claim it:
+Open the Airtel Thanks app on your phone.
+Go to the "Rewards and OTTs" section.
+Look for the Perplexity Pro offer and follow the prompts to activate it using your Gmail or Apple ID.
+If you prefer a direct link for information or FAQs, Airtel’s official page for this offer is:
+airtel.in/perplexity-pro/
+You must claim the offer through the Airtel Thanks app, not directly on Perplexity, and the benefit is available to both prepaid and postpaid Airtel users across mobile, WiFi, and DTH until January 17, 2026.
+activate perplexity with email pmia2023nov@gmail.com
+The cheapest way to keep your Airtel SIM active for 1 year (in order to retain your Perplexity Pro subscription) is to buy a 1-year validity prepaid plan. Based on the latest 2025 plans:
+The Airtel ₹1,849 plan offers unlimited calls and 3,600 SMS for a full year, but with no data. This is the lowest annual plan just for validity and basic calling/SMS.
+The Airtel ₹1,999 plan gives 1-year (365 days) validity, unlimited calls, 100 SMS/day, and 24GB data for the whole year.
+#
+you can "plug in" different methods at runtime, like events or callbacks.
 
 #
 `public delegate int Comparison<in T>(T left, T right);`

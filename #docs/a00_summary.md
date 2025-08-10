@@ -25,7 +25,9 @@
 - [delegate, pub-sub](#delegate-pub-sub)
 - [Compound operators e.g. +=](#compound-operators-eg-)
 
-# shortcuts & prompts: VStudio
+## prompt
+Answer with a single block of latest .net version C# code. The code should have its own input End the code with a Console.WriteLine("End"); statement. No other ConsoleWriteLine statement is needed because I will test in debug mode with breakpoints. Have minimal comments. Comments should only be at the end of the respective code line.  
+## shortcuts
 use xUnit for unit testing
 
 ??: Null-coalescing operator – checks if left side is null, then uses right side.
@@ -35,10 +37,19 @@ Ctrl+K+H = add the line to tasklist (toggle)
 Ctrl+D = copy selected text below
 
 Ctrl+L = delete current line
+## access modifier
+static: The property belongs to the class itself, not to individual objects (instances). You can access it directly, without creating a 'new' object.
+## delegate
+ In main,  Logger.WriteMessage -= LoggingMethods.LogToFile; This connects delegate to the method. Method can be switched at runtime
+## struct vs class
+With constructors in structs, 
 
-Answer with a single block of latest .net version C# code. The code should have its own input End the code with a Console.WriteLine("End"); statement. No other ConsoleWriteLine statement is needed because I will test in debug mode with breakpoints. Have minimal comments. Comments should only be at the end of the respective code line.  
+- you cannot write a custom parameterless constructor 
 
-# system design
+ - you can initialize all the fields or none, but not some
+
+ - cannot have destructors/finalizers
+## system design
  must-know runtime complexities for coding interviews:
 
 1. 𝐎(1) - 𝐂𝐨𝐧𝐬𝐭𝐚𝐧𝐭 𝐭𝐢𝐦𝐞

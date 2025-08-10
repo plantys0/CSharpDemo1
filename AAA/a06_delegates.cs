@@ -7,6 +7,16 @@ namespace AAA
 {
     public class a06_delegates
     {
+        // Define Severity enum for log levels
+        public enum Severity
+        {
+            Verbose = 0,
+            Information = 1,
+            Warning = 2,
+            Error = 3,
+            Critical = 4
+        }
+
         // Logger class: Acts as the "boss" that triggers logging via a delegate.
         // The delegate allows flexible attachment of different logging methods without changing this class.
         public static class Logger
@@ -15,12 +25,16 @@ namespace AAA
             // Nullable (?) so it can start as null.
             public static Action<string>? WriteMessage;
 
-            // Method to log a message: Checks if delegate is attached, then invokes it.
-            // This stays the same no matter which logging method is attached.
-            public static void LogMessage(string msg)
+            // Log level property: Default to Warning
+            public static Severity LogLevel { get; set; } = Severity.Warning;
+
+            // Method to log a message: Checks level, formats, then invokes delegate if attached.
+            public static void LogMessage(Severity s, string component, string msg)
             {
+                if (s < LogLevel) return;
+                var outputMsg = $"{DateTime.Now}\t{s}\t{component}\t{msg}";
                 if (WriteMessage is not null)
-                    WriteMessage(msg);  // Invokes the attached method(s) with the message.
+                    WriteMessage(outputMsg);  // Invokes the attached method(s) with formatted message.
             }
         }
 
@@ -50,35 +64,73 @@ namespace AAA
             }
         }
 
+        // FileLogger class: Instance-based logger that attaches to delegate.
+        // Handles file logging with error tolerance.
+        public class FileLogger
+        {
+            private readonly string logPath;
+            public FileLogger(string path)
+            {
+                logPath = path;
+                Logger.WriteMessage += LogMessage;
+            }
+            public void DetachLog() => Logger.WriteMessage -= LogMessage;
+            // make sure this can't throw.
+            private void LogMessage(string msg)
+            {
+                try
+                {
+                    using (var log = File.AppendText(logPath))
+                    {
+                        log.WriteLine(msg);
+                        log.Flush();
+                    }
+                }
+                catch (Exception)
+                {
+                    // Hmm. We caught an exception while
+                    // logging. We can't really log the
+                    // problem (since it's the log that's failing).
+                    // So, while normally, catching an exception
+                    // and doing nothing isn't wise, it's really the
+                    // only reasonable option here.
+                }
+            }
+        }
+
         // Main method: Entry point to demonstrate delegate benefits.
-        // Shows switching between logging methods and multicast (multiple at once).
+        // Shows switching between logging methods, multicast, severity filtering, and FileLogger.
         public static void Main()
         {
-            // Attach first logging method: Log to console.
-            // Benefit: Starts with console logging.
+            // Set log level to Information for demo (logs Info and above)
+            Logger.LogLevel = Severity.Information;
+
+            // Attach console logging
             Logger.WriteMessage += LoggingMethods.LogToConsole;
-            Logger.LogMessage("Test1: This goes to console.");  // Output: Console
+            Logger.LogMessage(Severity.Warning, "Main", "Test1: This goes to console.");  // Output: Console
 
-            // Detach console and attach file logging.
-            // Benefit: Switch behavior at runtime without changing Logger code.
+            // Demonstrate severity filtering: Verbose skipped since level is Information
+            Logger.LogMessage(Severity.Verbose, "Main", "TestVerbose: This should NOT log.");
+
+            // Detach console, attach debug
             Logger.WriteMessage -= LoggingMethods.LogToConsole;
-            Logger.WriteMessage += LoggingMethods.LogToFile;
-            Logger.LogMessage("Test2: This goes to file.");  // Output: log.txt file
-
-            // Detach file and attach debug logging.
-            // Benefit: Another switch - flexibility for different scenarios.
-            Logger.WriteMessage -= LoggingMethods.LogToFile;
             Logger.WriteMessage += LoggingMethods.LogToDebug;
-            Logger.LogMessage("Test3: This goes to debug.");  // Output: VS Debug window
+            Logger.LogMessage(Severity.Error, "Main", "Test2: This goes to debug.");  // Output: VS Debug window
 
-            // Multicast: Attach multiple methods at once.
-            // Benefit: One call logs to multiple places (console + file).
-            Logger.WriteMessage += LoggingMethods.LogToConsole;  // Now debug + console
-            Logger.WriteMessage += LoggingMethods.LogToFile;     // Now debug + console + file
-            Logger.LogMessage("Test4: This goes to debug, console, and file.");  // Multiple outputs
+            // Create FileLogger instance (attaches itself to delegate)
+            var fileLogger = new FileLogger("log.txt");
+            Logger.LogMessage(Severity.Critical, "Main", "Test3: This goes to debug and file.");  // Output: Debug + file
+
+            // Multicast: Add console too
+            Logger.WriteMessage += LoggingMethods.LogToConsole;
+            Logger.LogMessage(Severity.Information, "Main", "Test4: This goes to debug, console, and file.");  // Multiple outputs
+
+            // Detach FileLogger and clean up
+            fileLogger.DetachLog();
 
             /*
-           In main,  Logger.WriteMessage -= LoggingMethods.LogToFile; This connects delegate to the method. Method can be switched at runtime
+            In main, Logger.WriteMessage += LoggingMethods.LogToFile; This connects delegate to the method. Method can be switched at runtime.
+            Note: Fixed comment - += attaches, -= detaches.
             */
         }
     }

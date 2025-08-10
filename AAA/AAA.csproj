@@ -5,7 +5,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <StartupObject>AAA.a06_delegates</StartupObject>
+    <StartupObject>AAA.b01_abstractClass</StartupObject>
   </PropertyGroup>
 
 </Project>
