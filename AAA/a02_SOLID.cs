@@ -1,8 +1,12 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace AAA
 {
-    public class a02_SOLID
+    public class a02_SOLIDINotifier
     {
         // SOLID Principles - Condensed Explanation in C#
         // All explanations are provided as comments.
@@ -449,7 +453,7 @@ namespace AAA
 
         public class BookTicketService
         {
-            private TicketRepository repo = new TicketRepository(); // tightly coupled
+            private TicketRepository repo = new TicketRepository(); // tightly coupled - can't swap without editing this class
 
             public string Execute(string userId, string movieId)
             {
@@ -460,7 +464,7 @@ namespace AAA
 
         public class BookTicketController
         {
-            private BookTicketService service = new BookTicketService(); // tightly coupled
+            private BookTicketService service = new BookTicketService(); // tightly coupled - can't swap without editing
 
             public object HandleRequest(object req) // Simplified
             {
@@ -474,7 +478,7 @@ namespace AAA
         }
 
         // SOLID Example: Depend on interfaces, inject dependencies.
-        // To extend: Implement new repositories, services, etc., and inject them without changing high-level classes.
+        // To extend: Implement new repositories (e.g., mock for testing), inject without changing high-level classes.
         public interface ITicketRepository
         {
             string BookTicket(string userId, string movieId);
@@ -484,8 +488,18 @@ namespace AAA
         {
             public string BookTicket(string userId, string movieId)
             {
-                Console.WriteLine($"Saving booking in DB for user {userId} and movie {movieId}");
-                return "booking-id-123";
+                Console.WriteLine($"Saving booking in REAL DB for user {userId} and movie {movieId}");
+                return "real-booking-id-123";
+            }
+        }
+
+        // Added for demo: Mock repository (e.g., for unit testing, no real DB)
+        public class MockTicketRepository : ITicketRepository
+        {
+            public string BookTicket(string userId, string movieId)
+            {
+                Console.WriteLine($"Simulating booking in MOCK DB for user {userId} and movie {movieId}");
+                return "mock-booking-id-999";
             }
         }
 
@@ -495,7 +509,7 @@ namespace AAA
 
             public BookTicketServiceSolid(ITicketRepository repo)
             {
-                this.repo = repo;
+                this.repo = repo; // Injected - easy to swap
             }
 
             public string Execute(string userId, string movieId)
@@ -511,7 +525,7 @@ namespace AAA
 
             public BookTicketControllerSolid(BookTicketServiceSolid service)
             {
-                this.service = service;
+                this.service = service; // Injected - easy to swap
             }
 
             public object HandleRequest(object req) // Simplified
@@ -599,13 +613,19 @@ namespace AAA
             // DIP Demo
             Console.WriteLine("--- DIP Non-SOLID ---");
             BookTicketController controller = new BookTicketController();
-            controller.HandleRequest(null);
+            controller.HandleRequest(null); // Uses real repo, can't swap easily
 
-            Console.WriteLine("--- DIP SOLID ---");
-            ITicketRepository repo = new TicketRepositorySolid();
-            BookTicketServiceSolid service = new BookTicketServiceSolid(repo);
-            BookTicketControllerSolid controllerSolid = new BookTicketControllerSolid(service);
-            controllerSolid.HandleRequest(null);
+            Console.WriteLine("--- DIP SOLID (Real Repo) ---");
+            ITicketRepository realRepo = new TicketRepositorySolid();
+            BookTicketServiceSolid realService = new BookTicketServiceSolid(realRepo);
+            BookTicketControllerSolid realController = new BookTicketControllerSolid(realService);
+            realController.HandleRequest(null); // Uses real DB
+
+            Console.WriteLine("--- DIP SOLID (Mock Repo - Easy Swap) ---");
+            ITicketRepository mockRepo = new MockTicketRepository(); // Swapped here, no code changes elsewhere
+            BookTicketServiceSolid mockService = new BookTicketServiceSolid(mockRepo);
+            BookTicketControllerSolid mockController = new BookTicketControllerSolid(mockService);
+            mockController.HandleRequest(null); // Uses mock for testing
         }
     }
 }

@@ -7,3 +7,4 @@ global using System.Text.RegularExpressions;
 global using System.ComponentModel.DataAnnotations;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis; //TODO: whats this
+global using System.Text.Json;
